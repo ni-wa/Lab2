@@ -12,13 +12,18 @@ public class Flight {
 
     private Airplane airplane;
 
-    private int FirstClassPrice;
+    private int firstClassPrice;
 
     private int secondClassPrice;
 
     private Menu menu;
 
     private LocalDateTime arrival;
+    
+    public Flight(){
+        this.firstClassPrice = 2222;
+        this.secondClassPrice = 555;
+    }
 
     public Seat createBooking(Customer customer, Food food, Seat seat) {
         throw new UnsupportedOperationException("Not supported yet.");
