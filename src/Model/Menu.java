@@ -1,3 +1,5 @@
+package Model;
+
 public class Menu {
 
     private List Food;

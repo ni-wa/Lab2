@@ -1,3 +1,5 @@
+package Model;
+
 public class Airplane {
 
     private List<PhysicalSeat> physicalSeats;

@@ -1,3 +1,5 @@
+package Model;
+
 public class Seat extends PhysicalSeat {
 
     private Customer customer;

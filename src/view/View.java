@@ -1,3 +1,11 @@
+package view;
+
+
+import Model.Seat;
+import Model.Flight;
+import Model.Customer;
+import Model.Menu;
+
 public class View {
 
     public int ShowStartScreen() {

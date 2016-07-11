@@ -1,3 +1,5 @@
+package Model;
+
 private class InitData {
 
     public Flight createFlight() {

@@ -1,3 +1,5 @@
+package Model;
+
 public class Flight {
 
     private ArrayList<Seat> seats;
