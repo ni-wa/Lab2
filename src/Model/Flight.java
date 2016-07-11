@@ -39,4 +39,10 @@ public class Flight {
     private List<PhysicalSeat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public String showBookingInformationForSeat(Seat seat) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(seat.toString());
+        return sb.toString();
+    }
 }
