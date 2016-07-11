@@ -7,6 +7,6 @@ public class Seat extends PhysicalSeat {
     private Food food;
 
     public boolean isBooked() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet*********");
     }
 }
