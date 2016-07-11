@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Model;
 
 /**
  *
- * @author andre
+ * @author User
  */
-public class TestAndreas {
-    
+public enum Type {
+    FIRST_CLASS, SECOND_CLASS
+
 }
