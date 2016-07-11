@@ -1,60 +1,118 @@
 package view;
 
-
 import Model.Seat;
 import Model.Flight;
 import Model.Customer;
+import Model.Food;
 import Model.Menu;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class View {
-    
+
+    static protected Scanner scanner;
+
+    String instructions = "Vad vill du göra?\n";
+    String exitChoice = "0 Avsluta\n";
+
     String[] startScreenText = {
-        "Vad vill du göra", 
-        "0 Avsluta",
-        "1 Profit", 
-        "2 Boka resa"};
-    
-    String[] availableSeatsText= {
-        "Vad vill du göra",
-        "0 Avsluta",
-        "1 Boka förstaklassbiljett",
-        "2 Boka andraklassbiljett"
+        instructions,
+        exitChoice,
+        "1 Profit\n",
+        "2 Boka resa\n"};
+
+    String[] availableSeats1stClassText = {
+        "1 Boka förstaklassbiljett\n"
     };
-    
-     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-     
-     int readIntInput(){
-        System.out.print("Enter String");
-        String s = br.readLine();
-        System.out.print("Enter Integer:");
-        try{
-            int i = Integer.parseInt(br.readLine());
-        }catch(NumberFormatException nfe){
-            System.err.println("Invalid Format!");
+    String[] availableSeats2ndClassText = {
+        "1 Boka andraklassbiljett\n"
+    };
+
+    public static int showOptions(String[] message) {
+        int maxAcceptableInt = message.length - 1;
+        int input = 0;
+        boolean error = true;
+        while (error) {
+            System.out.println(message);
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                if (input >= 0 && input <= maxAcceptableInt) {
+                    error = false;
+                }
+            } else {
+                error = true;
+                scanner.next();
+            }
         }
-     }
+        return input;
+    }
+    public static String getString(String message, int maxLength) {
+        String input = "";
+        boolean error = true;
+        while (error) {
+            System.out.println(message);
+            if (scanner.hasNext()) {
+                input = scanner.nextLine();
+                if (input.length() < 1 || input.length() > maxLength) {
+                    error = false;
+                }
+            } else {
+                error = true;
+                scanner.next();
+            }
+        }
+        return input;
+    }
 
     public int ShowStartScreen() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        int input = showOptions(startScreenText);
+        return input;
     }
 
     public int showAvailableSeats(int noFo1stClassSeatsAvail, int price1stClass, int noOf2ndClassAvailable, int price2ndClass) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String[] text = new String[4];
+        if (noFo1stClassSeatsAvail == 0 && noOf2ndClassAvailable == 0) {
+            System.out.println("Sorry!\n");
+            System.out.println("Alla biljetter är slut!!!");
+            return -1;
+        }
+        text[0] = instructions;
+        text[1] = exitChoice;
+
+        text[2] = "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\nPris:" + price1stClass + " kr";
+        text[3] = "Andraklassbiljetter:\t" + noOf2ndClassAvailable + " stycken\nPris:" + price2ndClass + " kr";
+        return showOptions(text);
     }
 
-    public Menu showFood(Menu menu) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int showFood(Menu menu) {
+        List<Food> foodList = new ArrayList<>(menu.getFoodList());
+        int noOfFoodChoices = menu.getFoodList().size() + 2; // +2  to make room for instructions and 0 alternative
+        String[] foodAlternatives = new String[noOfFoodChoices];
+        foodAlternatives[0] = instructions;
+        foodAlternatives[1] = "Ingen mat önskas";
+        int i = 1;
+        for (Food food : foodList) {
+            foodAlternatives[i] = i + " " + food.toString();
+        }
+        return showOptions(foodAlternatives);
     }
 
     public Customer showGetCustomerData() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String getNameText = "Mata in kundens namn\t";
+        String getIdText = "Mata in kundens id. Max 4 siffror\t";
+        
+        String getCustomerName = getString(getNameText, 100);
+        String getCustomerId = getString(getIdText, 10);
+        int id = Integer.parseInt(getCustomerId);
+        Customer c = new Customer(getCustomerName, id);
+        return c;
     }
 
     public Seat showBookingData(Flight flight, Seat seat) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String bookingInformation = flight.showBookingInformationForSeat(seat);
+        System.out.println("Bokningsinformation:\t" + bookingInformation);
+        return seat;
     }
-    
-    
 }
