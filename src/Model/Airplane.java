@@ -4,7 +4,15 @@ import java.util.List;
 
 public class Airplane {
 
-    private List<PhysicalSeat> physicalSeats;
+    public Airplane(){
+    }
+
+    public Airplane(List<PhysicalSeat> physicalSeats, String status) {
+        this.physicalSeat = physicalSeats;
+        this.status = status;
+    }
+    
+    private List<PhysicalSeat> physicalSeat;
 
     private String status;
     
