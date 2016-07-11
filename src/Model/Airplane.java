@@ -1,8 +1,10 @@
 package Model;
 
+import java.util.List;
+
 public class Airplane {
 
-    private List<PhysicalSeat> physicalSeats;
+    private List<PhysicalSeat> physicalSeat;
 
-    private Status status;
+    private String status;
 }

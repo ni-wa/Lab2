@@ -1,5 +1,9 @@
 package Model;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Flight {
 
     private ArrayList<Seat> seats;
@@ -28,7 +32,7 @@ public class Flight {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private List<PhysicalSeats> convertPhysicalSeatsToSeats(List<PhysicalSeats> physicalSeats) {
+    private List<PhysicalSeat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -1,6 +1,6 @@
 package Model;
 
-private class InitData {
+class InitData {
 
     public Flight createFlight() {
         throw new UnsupportedOperationException("Not supported yet.");
