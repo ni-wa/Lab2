@@ -5,13 +5,18 @@
  */
 package controller;
 
+import Model.Flight;
+
 /**
  *
  * @author User
  */
 public class Start {
     public static void main(String[] args) {
-        Controller controller = new Controller();
         
+        InitData intiData = new InitData();
+        Flight flight = intiData.createFlight();
+        Controller controller = new Controller(flight);
+        controller.startInterface();
     }
 }
