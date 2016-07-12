@@ -53,7 +53,7 @@ public class InitData {
     public Flight createFlight(){
         Airplane airplane = createAirplane(5, 5, "OK");
         Menu menu = createMenu();
-        Flight flight = new Flight(menu, airplane);
+        Flight flight = new Flight(airplane, menu );
         return flight;
         
     }
