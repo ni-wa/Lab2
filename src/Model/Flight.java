@@ -15,7 +15,7 @@ public class Flight {
     private int secondClassPrice;
     private Menu menu;
     
-    private Customer tempCustomer = new Customer("TempBooking", 0);
+    private Customer tempCustomer = new Customer("TempBooking", "");
       
     public Flight(Airplane airplane, Menu menu){
         this.airplane = airplane;
@@ -43,6 +43,15 @@ public class Flight {
     public int createTempBooking(Type type){
         Seat seat = getFirstAvailableSeat(type);
         createBooking(tempCustomer, null, seat);
+        return seat.getSeatNo();
+    }
+    
+    public int createBooking(Type type, Food food, Customer customer){
+        Seat seat = getFirstAvailableSeat(type);
+        seat.setCustomer(customer);
+        if (food != null) {
+            seat.setFood(food);
+        }
         return seat.getSeatNo();
     }
     
@@ -81,6 +90,7 @@ public class Flight {
     public String showBookingInformationForSeat(Seat seat) {
         StringBuffer sb = new StringBuffer();
         sb.append(seat.toString());
+        
         return sb.toString();
     }
  
@@ -112,6 +122,20 @@ public class Flight {
             }
         }
         return null;
+    }
+    
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("Departure:\t" + departure + "\t Arrival:\t"+ arrival);
+        return sb.toString();
+    }
+    
+    public void showAllFlightData() {
+        this.toString();
+        for (Seat seat : seats) {
+            System.out.println(seat.toString());
+        }
+        System.out.println(airplane.toString());
     }
 
     public Airplane getAirplane() {

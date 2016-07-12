@@ -5,6 +5,7 @@ import Model.Flight;
 import Model.Customer;
 import Model.Food;
 import Model.Menu;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,8 @@ public class View {
         instructions,
         exitChoice,
         "1 Boka resa\n",
-        "2 Profit\n"};
+        "2 Profit\n",
+        "3 Visa all flight info"};
 
     String[] availableSeats1stClassText = {
         "1 Boka förstaklassbiljett\n"
@@ -29,7 +31,7 @@ public class View {
     String[] availableSeats2ndClassText = {
         "1 Boka andraklassbiljett\n"
     };
-    
+
     public View() {
         scanner = new Scanner(System.in);
     }
@@ -54,14 +56,16 @@ public class View {
         }
         return input;
     }
-    public static String getString(String message, int maxLength) {
-        String input = "";
+
+    public static String getString(String message, int minLength, int maxLength) {
+        String input = null;// = "";
         boolean error = true;
         while (error) {
             System.out.println(message);
             if (scanner.hasNext()) {
                 input = scanner.nextLine();
-                if (input.length() < 1 || input.length() > maxLength) {
+                if (minLength <= input.trim().length()
+                        || maxLength >= input.trim().length()) {
                     error = false;
                 }
             } else {
@@ -69,6 +73,7 @@ public class View {
                 scanner.next();
             }
         }
+//        scanner.nextLine();
         return input;
     }
 
@@ -84,10 +89,10 @@ public class View {
             System.out.println("Alla biljetter är slut!!!");
             return -1;
         }
-        text[0] = instructions + 
-                "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n" +
-                "Andraaklassbiljetter:\t" + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
-        
+        text[0] = instructions
+                + "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n"
+                + "Andraaklassbiljetter:\t" + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
+
         text[1] = exitChoice;
 
         text[2] = "1 Boka en förstaklassbiljett";
@@ -103,7 +108,7 @@ public class View {
         foodAlternatives[1] = "0 Ingen mat önskas";
         int i = 2;
         for (Food food : foodList) {
-            foodAlternatives[i] = i-1 + " " + food.toString();
+            foodAlternatives[i] = i - 1 + " " + food.toString();
             i++;
         }
         return showOptions(foodAlternatives);
@@ -111,18 +116,38 @@ public class View {
 
     public Customer showGetCustomerData() {
         String getNameText = "Mata in kundens namn\t";
-        String getIdText = "Mata in kundens id. Max 4 siffror\t";
-        
-        String getCustomerName = getString(getNameText, 100);
-        String getCustomerId = getString(getIdText, 10);
-        int id = Integer.parseInt(getCustomerId);
-        Customer customer = new Customer(getCustomerName, id);
+        String getIdText = "Mata in kundens id. Max 10 tecken\t";
+
+        String customerName = getString(getNameText, 2, 100);
+        int id = 0;
+        boolean notNumeric = true;
+        scanner.next();
+        String customerId = getString(getIdText, 4, 4);
+
+//        while (notNumeric) {
+//            String customerId = getString(getIdText, 10);
+//            if (customerId.matches("\\d+")) {
+//                notNumeric = false;
+//                id = Integer.parseInt(customerId);
+//            }
+//            
+//        }
+        Customer customer = new Customer(customerName, customerId);
         return customer;
     }
 
     public Seat showBookingData(Flight flight, Seat seat) {
+        System.out.println("\n\n");
         String bookingInformation = flight.showBookingInformationForSeat(seat);
-        System.out.println("Bokningsinformation:\t" + bookingInformation);
+        System.out.println("Bokningsinformation:\n" + bookingInformation);
+        System.out.println(flight.toString());
+        System.out.println("\n\n");
         return seat;
+    }
+    
+    public void showAllFligthData(Flight flight){
+        flight.showAllFlightData();
+        
+        
     }
 }

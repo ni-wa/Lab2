@@ -14,8 +14,9 @@ import Model.Flight;
 public class Start {
     public static void main(String[] args) {
         
-        InitData intiData = new InitData();
-        Flight flight = intiData.createFlight();
+        InitData initData = new InitData();
+        Flight flight = initData.createFlight();
+        initData.createBookings(flight);
         Controller controller = new Controller(flight);
         controller.startInterface();
     }

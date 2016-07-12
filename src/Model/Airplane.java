@@ -1,10 +1,11 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Airplane {
 
-    private List<PhysicalSeat> physicalSeats;
+    private List<PhysicalSeat> physicalSeats = new ArrayList<>();
 
     private String status;
 
@@ -26,6 +27,13 @@ public class Airplane {
             physicalSeats.add(ps);
         }
         this.status = status;
+    }
+    
+    public String toString(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("Number of firstclass seats: " + getNumberOf1stClassSeats());
+        sb.append("\tNumber of secondclass seats: " + getNumberOf2ndClassSeats()+ "\n");
+        return sb.toString();
     }
 
     List<PhysicalSeat> getPhysicalSeats() {

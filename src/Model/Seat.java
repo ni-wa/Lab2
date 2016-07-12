@@ -17,7 +17,7 @@ public class Seat extends PhysicalSeat {
             return true;
         }
     }
-
+    
     public Customer getCustomer() {
         return customer;
     }
@@ -32,5 +32,20 @@ public class Seat extends PhysicalSeat {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        String free = "FREE\t\t";
+        if (customer != null){
+            sb.append(customer.toString() + "\n");
+            free = "";
+        }
+        if (food != null) {
+            sb.append(food.toString() + "\t");
+        }
+        
+        sb.append(free + "SeatClass:\t" + getType() + "\t\tSeatNo:\t" + seatNo + "\n");
+        return sb.toString();
     }
 }

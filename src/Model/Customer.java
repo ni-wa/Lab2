@@ -4,13 +4,16 @@ public class Customer {
 
     private String name;
 
-    private int id;
+    private String id;
 
-    public Customer(String customerName, int id) {
+    public Customer(String customerName, String id) {
         this.name = customerName;
         this.id = id;
     }
 
+    public String toString(){
+        return "Name: " + name + "\t\tId: " + id;
+    }
     /**
      * @return the Name
      */
@@ -28,14 +31,14 @@ public class Customer {
     /**
      * @return the Id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param Id the Id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     

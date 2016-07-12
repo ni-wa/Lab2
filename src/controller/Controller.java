@@ -28,7 +28,11 @@ public class Controller {
             choice = view.ShowStartScreen();
             if (choice == 1) {
                 bookingProcedure();
-            } else {
+            } if (choice == 3) {
+                view.showAllFligthData(flight);
+            }
+            
+            else {
                 choice = 0;
             }
         }
@@ -65,10 +69,12 @@ public class Controller {
             seat.setFood(flight.getMenu().getFoodByNumber(choice));
         }
         Customer customer = null;
-        if (seat != null && customer != null) {
+        if (seat != null && customer == null) {
             while (customer == null) {
                 customer = view.showGetCustomerData();
+                System.out.println("Cust = null");
             }
+            System.out.println("Cost !!!=== null");
             view.showBookingData(flight, seat);
         }
     }
