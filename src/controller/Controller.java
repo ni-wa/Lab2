@@ -13,9 +13,7 @@ import java.util.List;
 public class Controller {
 
     private View view;
-
     private Flight flight;
-
     private Airplane airPlane;
     private Profit profit = new Profit();
     
