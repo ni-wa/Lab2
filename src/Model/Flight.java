@@ -8,12 +8,14 @@ import java.util.List;
 public class Flight {
 
     private Airplane airplane;
-    private ArrayList<Seat> seats;
+    private ArrayList<Seat> seats = new ArrayList<>();
     private LocalDateTime departure;
     private LocalDateTime arrival;
     private int firstClassPrice;
     private int secondClassPrice;
     private Menu menu;
+    
+    private Customer tempCustomer = new Customer("TempBooking", 0);
       
     public Flight(Airplane airplane, Menu menu){
         this.airplane = airplane;
@@ -37,6 +39,22 @@ public class Flight {
             seat.setFood(food);
         }
         return seat.getSeatNo();
+    }
+    
+    public int createTempBooking(Type type){
+        Seat seat = getFirstAvailableSeat(type);
+        createBooking(tempCustomer, null, seat);
+        return seat.getSeatNo();
+    }
+    
+    private Seat getFirstAvailableSeat(Type type){
+        for (Seat seat : seats) {
+            if (!seat.isBooked() && seat.getType() == type) {
+                return seat;
+            }
+            
+        }
+        return null;
     }
 
     public int[] getAvailableSeats() {
@@ -106,6 +124,15 @@ public class Flight {
             }
         }
         return noOf2ndClassSeatsAvail;
+    }
+    
+    public Seat getSeatByNumber(int seatNumber){
+        for (Seat seat : seats) {
+            if (seat.getSeatNo() == seatNumber) {
+                return seat;
+            }
+        }
+        return null;
     }
 
     /**
