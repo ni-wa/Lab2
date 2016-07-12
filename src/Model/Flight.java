@@ -67,29 +67,8 @@ public class Flight {
         return sb.toString();
     }
  
-    /*
-    public int getNoOf1stClassSeats(){
-        int noOf1stClassSeats = 0;
-        for (Seat seat : seats) {
-            if (seat.getType() == Type.FIRST_CLASS) {
-                noOf1stClassSeats++;
-            }
-        }
-        return noOf1stClassSeats;
-    }
-    
-    public int getNoOf2ndClassSeats(){
-       int noOf2ndClassSeats = 0;
-        for (Seat seat : seats) {
-            if (seat.getType() == Type.SECOND_CLASS) {
-                noOf2ndClassSeats++;
-            }
-        }
-        return noOf2ndClassSeats;
-    }
-    */
     public int getNoOf1stClassSeatsAvail(){
-       int noOf1stClassSeatsAvail = getNoOf1stClassSeats();
+       int noOf1stClassSeatsAvail = airplane.getNumberOf1stClassSeats();
         for (Seat seat : seats) {
             if (seat.getType() == Type.FIRST_CLASS 
                     && seat.isBooked()) {
@@ -99,7 +78,7 @@ public class Flight {
         return noOf1stClassSeatsAvail;
     }
     public int getNoOf2ndClassSeatsAvail(){
-        int noOf2ndClassSeatsAvail = getNoOf2ndClassSeats();
+        int noOf2ndClassSeatsAvail = airplane.getNumberOf2ndClassSeats();
         for (Seat seat : seats) {
             if (seat.getType() == Type.SECOND_CLASS 
                     && seat.isBooked()) {
