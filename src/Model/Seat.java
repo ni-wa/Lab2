@@ -6,6 +6,11 @@ public class Seat extends PhysicalSeat {
 
     private Food food;
 
+    public Seat(int seatNo, Type type){
+        this.seatNo = seatNo;
+        this.type = type;
+    }
+    
     public boolean isBooked() {
         if (getCustomer() == null) {
             return false;

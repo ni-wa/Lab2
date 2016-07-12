@@ -14,16 +14,10 @@ public class PhysicalSeat {
         this.type = type;
     }
 
-    /**
-     * @return the seatNo
-     */
     public int getSeatNo() {
         return seatNo;
     }
 
-    /**
-     * @return the type
-     */
     public Enum getType() {
         return type;
     }
