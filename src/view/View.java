@@ -20,8 +20,8 @@ public class View {
     String[] startScreenText = {
         instructions,
         exitChoice,
-        "1 Profit\n",
-        "2 Boka resa\n"};
+        "1 Boka resa\n",
+        "2 Profit\n"};
 
     String[] availableSeats1stClassText = {
         "1 Boka förstaklassbiljett\n"
@@ -77,18 +77,21 @@ public class View {
         return input;
     }
 
-    public int showAvailableSeats(int noFo1stClassSeatsAvail, int price1stClass, int noOf2ndClassAvailable, int price2ndClass) {
+    public int showAvailableSeats(int noFo1stClassSeatsAvail, int price1stClass, int noOf2ndClassSeatsAvail, int price2ndClass) {
         String[] text = new String[4];
-        if (noFo1stClassSeatsAvail == 0 && noOf2ndClassAvailable == 0) {
+        if (noFo1stClassSeatsAvail == 0 && noOf2ndClassSeatsAvail == 0) {
             System.out.println("Sorry!\n");
             System.out.println("Alla biljetter är slut!!!");
             return -1;
         }
-        text[0] = instructions;
+        text[0] = instructions + 
+                "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n" +
+                "Andraaklassbiljetter:\t" + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
+        
         text[1] = exitChoice;
 
-        text[2] = "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\nPris:" + price1stClass + " kr";
-        text[3] = "Andraklassbiljetter:\t" + noOf2ndClassAvailable + " stycken\nPris:" + price2ndClass + " kr";
+        text[2] = "1 Boka en förstaklassbiljett";
+        text[3] = "2 Boka en andraklassbiljett";
         return showOptions(text);
     }
 
@@ -97,10 +100,11 @@ public class View {
         int noOfFoodChoices = menu.getFoodList().size() + 2; // +2  to make room for instructions and 0 alternative
         String[] foodAlternatives = new String[noOfFoodChoices];
         foodAlternatives[0] = instructions;
-        foodAlternatives[1] = "Ingen mat önskas";
-        int i = 1;
+        foodAlternatives[1] = "0 Ingen mat önskas";
+        int i = 2;
         for (Food food : foodList) {
-            foodAlternatives[i] = i + " " + food.toString();
+            foodAlternatives[i] = i-1 + " " + food.toString();
+            i++;
         }
         return showOptions(foodAlternatives);
     }
@@ -112,8 +116,8 @@ public class View {
         String getCustomerName = getString(getNameText, 100);
         String getCustomerId = getString(getIdText, 10);
         int id = Integer.parseInt(getCustomerId);
-        Customer c = new Customer(getCustomerName, id);
-        return c;
+        Customer customer = new Customer(getCustomerName, id);
+        return customer;
     }
 
     public Seat showBookingData(Flight flight, Seat seat) {
