@@ -14,6 +14,17 @@ public class Menu {
         foodList = id.createMenu();
 
     }
+    
+    public Food getFoodByNumber(int foodId){
+        List<Food> foodList = new ArrayList<>();
+        foodList = getFoodList();
+        for (Food food : foodList) {
+            if (food.getFoodId() == foodId) {
+                return food;
+            }
+        }
+        return null;
+    }
 
     public void setFoodList(List<Food> foodList) {
         this.foodList = foodList;

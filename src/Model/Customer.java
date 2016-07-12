@@ -2,11 +2,42 @@ package Model;
 
 public class Customer {
 
-    private String Name;
+    private String name;
 
-    private String Id;
+    private int id;
 
     public Customer(String customerName, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.name = customerName;
+        this.id = id;
     }
+
+    /**
+     * @return the Name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param Name the Name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the Id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param Id the Id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 }
