@@ -29,8 +29,7 @@ public class Flight {
         secondClassPrice = 555;
         this.menu = menu;
     }
-    
-    
+       
     private int createBooking(Customer customer, Food food, Seat seat){
         seat.setCustomer(customer);
         if (food != null) {
@@ -88,103 +87,52 @@ public class Flight {
         return noOf2ndClassSeatsAvail;
     }
 
-    /**
-     * @return the airplane
-     */
     public Airplane getAirplane() {
         return airplane;
     }
-
-    /**
-     * @param airplane the airplane to set
-     */
     public void setAirplane(Airplane airplane) {
         this.airplane = airplane;
     }
 
-    /**
-     * @return the seats
-     */
     public ArrayList<Seat> getSeats() {
         return seats;
     }
-
-    /**
-     * @param seats the seats to set
-     */
     public void setSeats(ArrayList<Seat> seats) {
         this.seats = seats;
     }
 
-    /**
-     * @return the departure
-     */
     public LocalDateTime getDeparture() {
         return departure;
     }
-
-    /**
-     * @param departure the departure to set
-     */
     public void setDeparture(LocalDateTime departure) {
         this.departure = departure;
     }
 
-    /**
-     * @return the arrival
-     */
     public LocalDateTime getArrival() {
         return arrival;
     }
-
-    /**
-     * @param arrival the arrival to set
-     */
     public void setArrival(LocalDateTime arrival) {
         this.arrival = arrival;
     }
 
-    /**
-     * @return the firstClassPrice
-     */
     public int getFirstClassPrice() {
         return firstClassPrice;
     }
-
-    /**
-     * @param firstClassPrice the firstClassPrice to set
-     */
     public void setFirstClassPrice(int firstClassPrice) {
         this.firstClassPrice = firstClassPrice;
     }
 
-    /**
-     * @return the secondClassPrice
-     */
     public int getSecondClassPrice() {
         return secondClassPrice;
     }
-
-    /**
-     * @param secondClassPrice the secondClassPrice to set
-     */
     public void setSecondClassPrice(int secondClassPrice) {
         this.secondClassPrice = secondClassPrice;
     }
 
-    /**
-     * @return the menu
-     */
     public Menu getMenu() {
         return menu;
     }
-
-    /**
-     * @param menu the menu to set
-     */
     public void setMenu(Menu menu) {
         this.menu = menu;
-    }
-    
-    
+    }  
 }
