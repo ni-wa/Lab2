@@ -33,22 +33,73 @@ public class Flight {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public ArrayList<Seat> getAvailableSeats() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public int[] getAvailableSeats() {
+        int numberOf1stClassSeatsAvail = getNoOf1stClassSeatsAvail();
+        int numberOf2ndClassSeatsAvail = getNoOf2ndClassSeatsAvail();
+        int price1stClass = getFirstClassPrice();
+        int price2ndClass = getSecondClassPrice();
+        int[] availSeatsAndPrices = {numberOf1stClassSeatsAvail,
+            numberOf2ndClassSeatsAvail, price1stClass, price2ndClass};
+        return availSeatsAndPrices;
+        }
 
     public Seat preliminaryBooking(Enum type) {
+        
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private List<PhysicalSeat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private List<Seat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
+        for (PhysicalSeat physicalSeat : physicalSeats) {
+            seats.add((Seat) physicalSeat);
+        }
+        return seats;
     }
 
     public String showBookingInformationForSeat(Seat seat) {
         StringBuffer sb = new StringBuffer();
         sb.append(seat.toString());
         return sb.toString();
+    }
+    
+    public int getNoOf1stClassSeats(){
+        int noOf1stClassSeats = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.FIRST_CLASS) {
+                noOf1stClassSeats++;
+            }
+        }
+        return noOf1stClassSeats;
+    }
+    
+    public int getNoOf2ndClassSeats(){
+       int noOf2ndClassSeats = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.SECOND_CLASS) {
+                noOf2ndClassSeats++;
+            }
+        }
+        return noOf2ndClassSeats;
+    }
+    
+    public int getNoOf1stClassSeatsAvail(){
+       int noOf1stClassSeatsAvail = getNoOf1stClassSeats();
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.FIRST_CLASS 
+                    && seat.isBooked()) {
+                noOf1stClassSeatsAvail--;
+            }
+        }
+        return noOf1stClassSeatsAvail;
+    }
+    public int getNoOf2ndClassSeatsAvail(){
+        int noOf2ndClassSeatsAvail = getNoOf2ndClassSeats();
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.SECOND_CLASS 
+                    && seat.isBooked()) {
+                noOf2ndClassSeatsAvail--;
+            }
+        }
+        return noOf2ndClassSeatsAvail;
     }
 
     /**
