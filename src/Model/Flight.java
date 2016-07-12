@@ -38,9 +38,6 @@ public class Flight {
         return seat.getSeatNo();
     }
 
-    
-    
-    
     public int[] getAvailableSeats() {
         int numberOf1stClassSeatsAvail = getNoOf1stClassSeatsAvail();
         int numberOf2ndClassSeatsAvail = getNoOf2ndClassSeatsAvail();
