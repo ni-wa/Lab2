@@ -1,16 +1,18 @@
 package Model;
 
 public class PhysicalSeat {
-    public PhysicalSeat(){
+
+    int seatNo;
+
+    Enum type;
+
+    public PhysicalSeat() {
     }
-    public PhysicalSeat(int seatNo, Type type){
+
+    public PhysicalSeat(int seatNo, Type type) {
         this.seatNo = seatNo;
         this.type = type;
-               
     }
-    private int seatNo;
-
-    private Enum type;
 
     /**
      * @return the seatNo
@@ -25,6 +27,5 @@ public class PhysicalSeat {
     public Enum getType() {
         return type;
     }
-    
-    
+
 }
