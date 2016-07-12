@@ -3,18 +3,15 @@ package Model;
 import java.util.List;
 
 public class Airplane {
-
-    public Airplane(){
-    }
-
-    public Airplane(List<PhysicalSeat> physicalSeats, String status) {
-        this.physicalSeat = physicalSeats;
-        this.status = status;
-    }
     
-    private List<PhysicalSeat> physicalSeat;
+    private List<PhysicalSeat> physicalSeats;
 
     private String status;
+
+    public Airplane(List<PhysicalSeat> physicalSeats, String status) {
+        this.physicalSeats = physicalSeats;
+        this.status = status;
+    }
     
     List<PhysicalSeat> getPhysicalSeats(){
         return physicalSeats;
