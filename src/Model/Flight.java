@@ -48,9 +48,16 @@ public class Flight {
         return availSeatsAndPrices;
         }
 
+    //TODO implement reservation of alternative class
     public Seat preliminaryBooking(Enum type) {
-        
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (Seat seat : seats) {
+            if (seat.getType() == type 
+                    && (seat.getPrelBooked() != false)) {
+                seat.setPrelBooked(true);
+                return seat;
+            }
+        }
+        return null;
     }
 
     private ArrayList<Seat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
