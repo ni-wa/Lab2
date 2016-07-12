@@ -20,7 +20,8 @@ public class Flight {
         //When a flight is defined, a list of bookable Seats is defined 
         //with equal number of seats as available Physical seats 
         //in the actual type of Airplane.
-        Seat[] seats = new Seat[airplane.getNumberOfPhysicalSeats()];
+        seats = convertPhysicalSeatsToSeats(airplane.getPhysicalSeats());
+        //Seat[] seats = new Seat[airplane.getNumberOfPhysicalSeats()];
 
         departure = LocalDateTime.of(2016,12,24,12,00);
         arrival = LocalDateTime.of(2016,12,24,13,00);
@@ -29,8 +30,13 @@ public class Flight {
         this.menu = menu;
     }
     
-    public Seat createBooking(Customer customer, Food food, Seat seat) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    
+    private int createBooking(Customer customer, Food food, Seat seat){
+        seat.setCustomer(customer);
+        if (food != null) {
+            seat.setFood(food);
+        }
+        return seat.getSeatNo();
     }
 
     public int[] getAvailableSeats() {
@@ -48,7 +54,7 @@ public class Flight {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    private List<Seat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
+    private ArrayList<Seat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
         for (PhysicalSeat physicalSeat : physicalSeats) {
             seats.add((Seat) physicalSeat);
         }

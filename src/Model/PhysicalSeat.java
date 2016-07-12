@@ -2,9 +2,9 @@ package Model;
 
 public class PhysicalSeat {
 
-    private int seatNo;
+    int seatNo;
 
-    private Enum type;
+    Enum type;
 
     public PhysicalSeat() {
     }
@@ -12,7 +12,6 @@ public class PhysicalSeat {
     public PhysicalSeat(int seatNo, Type type) {
         this.seatNo = seatNo;
         this.type = type;
-
     }
 
     public int getSeatNo() {

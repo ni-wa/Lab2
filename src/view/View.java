@@ -29,13 +29,19 @@ public class View {
     String[] availableSeats2ndClassText = {
         "1 Boka andraklassbiljett\n"
     };
+    
+    public View() {
+        scanner = new Scanner(System.in);
+    }
 
     public static int showOptions(String[] message) {
         int maxAcceptableInt = message.length - 1;
         int input = 0;
         boolean error = true;
         while (error) {
-            System.out.println(message);
+            for (String string : message) {
+                System.out.println(string);
+            }
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
                 if (input >= 0 && input <= maxAcceptableInt) {
