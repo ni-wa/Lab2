@@ -10,6 +10,7 @@ import Model.Flight;
 import Model.Food;
 import Model.Menu;
 import Model.PhysicalSeat;
+import Model.Seat;
 import Model.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +40,11 @@ public class InitData {
             String status) {
         List<PhysicalSeat> physicalSeats = new ArrayList<>();
         for (int i = 0; i < noOf1ClassSeats; i++) {
-            PhysicalSeat ps = new PhysicalSeat(i + 1, Type.FIRST_CLASS);
+            PhysicalSeat ps = new Seat(i + 1, Type.FIRST_CLASS);
             physicalSeats.add(ps);
         }
         for (int i = noOf1ClassSeats + 1; i < noOf1ClassSeats + noOf2ndClassSeats; i++) {
-            PhysicalSeat ps = new PhysicalSeat(i + 1, Type.SECOND_CLASS);
+            PhysicalSeat ps = new Seat(i + 1, Type.SECOND_CLASS);
             physicalSeats.add(ps);
         }
         Airplane airplane = new Airplane(physicalSeats, "OK");
@@ -53,7 +54,7 @@ public class InitData {
     public Flight createFlight(){
         Airplane airplane = createAirplane(5, 5, "OK");
         Menu menu = createMenu();
-        Flight flight = new Flight(menu, airplane);
+        Flight flight = new Flight(airplane, menu);
         return flight;
         
     }
