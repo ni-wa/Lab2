@@ -4,6 +4,7 @@ import view.View;
 import Model.Airplane;
 import Model.Customer;
 import Model.Flight;
+import Model.Profit;
 import Model.Seat;
 import Model.Type;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class Controller {
     private Flight flight;
 
     private Airplane airPlane;
-
+    private Profit profit = new Profit();
+    
     Controller(Flight flight) {
         this.flight = flight;
     }
@@ -28,6 +30,8 @@ public class Controller {
             choice = view.ShowStartScreen();
             if (choice == 1) {
                 bookingProcedure();
+            } else if (choice == 2) {
+                profitCalculation();
             } else {
                 choice = 0;
             }
@@ -71,5 +75,13 @@ public class Controller {
             }
             view.showBookingData(flight, seat);
         }
+    }
+
+    private void profitCalculation() {
+        int choice = -1;
+
+        int kr = profit.profitCalc(flight);
+
+        // fixa liknande som view.showBookingData(flight, seat);
     }
 }

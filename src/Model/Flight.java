@@ -111,6 +111,27 @@ public class Flight {
         }
         return noOf2ndClassSeatsAvail;
     }
+
+    public int getNoOf1stClassSeatsBooked(){
+       int noOf1stClassSeatsBooked = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.FIRST_CLASS 
+                    && seat.isBooked()) {
+                noOf1stClassSeatsBooked++;
+            }
+        }
+        return noOf1stClassSeatsBooked;
+    }
+    public int getNoOf2ndClassSeatsBooked(){
+        int noOf2ndClassSeatsBooked = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.SECOND_CLASS 
+                    && seat.isBooked()) {
+                noOf2ndClassSeatsBooked++;
+            }
+        }
+        return noOf2ndClassSeatsBooked;
+    }
     
     public Seat getSeatByNumber(int seatNumber){
         for (Seat seat : seats) {

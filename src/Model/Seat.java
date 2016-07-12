@@ -4,6 +4,7 @@ public class Seat extends PhysicalSeat {
 
     private Customer customer;
     private Food food;
+    private boolean prelBooked = false;
 
     public Seat(int seatNo, Type type){
         this.seatNo = seatNo;
@@ -32,5 +33,12 @@ public class Seat extends PhysicalSeat {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+
+    public boolean getPrelBooked() {
+        return prelBooked;
+    }    
+    public void setPrelBooked(Boolean prelBooked) {
+        this.prelBooked = prelBooked;
     }
 }
