@@ -60,7 +60,8 @@ public class Flight {
         sb.append(seat.toString());
         return sb.toString();
     }
-    
+ 
+    /*
     public int getNoOf1stClassSeats(){
         int noOf1stClassSeats = 0;
         for (Seat seat : seats) {
@@ -80,7 +81,7 @@ public class Flight {
         }
         return noOf2ndClassSeats;
     }
-    
+    */
     public int getNoOf1stClassSeatsAvail(){
        int noOf1stClassSeatsAvail = getNoOf1stClassSeats();
         for (Seat seat : seats) {
