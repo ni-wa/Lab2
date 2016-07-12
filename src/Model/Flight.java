@@ -46,14 +46,14 @@ public class Flight {
         return seat.getSeatNo();
     }
     
-    private Seat getFirstAvailableSeat(Type type){
+    private int getFirstAvailableSeat(Type type){
         for (Seat seat : seats) {
             if (!seat.isBooked() && seat.getType() == type) {
-                return seat;
+                return 999;
             }
             
         }
-        return null;
+        return 888;
     }
 
     public int[] getAvailableSeats() {
