@@ -9,7 +9,7 @@ public class Seat extends PhysicalSeat {
         this.seatNo = seatNo;
         this.type = type;
     }
-    
+
     public boolean isBooked() {
         if (getCustomer() == null) {
             return false;
@@ -17,7 +17,7 @@ public class Seat extends PhysicalSeat {
             return true;
         }
     }
-    
+
     public Customer getCustomer() {
         return customer;
     }
@@ -33,7 +33,7 @@ public class Seat extends PhysicalSeat {
     public void setFood(Food food) {
         this.food = food;
     }
-    
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
         String free = "FREE\t\t";
@@ -44,7 +44,7 @@ public class Seat extends PhysicalSeat {
         if (food != null) {
             sb.append(food.toString() + "\t");
         }
-        
+
         sb.append(free + "SeatClass:\t" + getType() + "\t\tSeatNo:\t" + seatNo + "\n");
         return sb.toString();
     }
