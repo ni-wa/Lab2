@@ -23,6 +23,7 @@ public class Controller {
     private int price1stClass;
     private int price2ndClass;
 
+    
     Controller(Flight flight) {
         this.flight = flight;
     }
@@ -108,5 +109,7 @@ public class Controller {
         int kr = profit.profitCalc(flight);
 
         // fixa liknande som view.showBookingData(flight, seat);
+        int profitSKr = profit.profitCalc(flight);
+        view.showProfit(profitSKr);
     }
 }

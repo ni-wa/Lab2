@@ -4,6 +4,7 @@ public class Seat extends PhysicalSeat {
 
     private Customer customer;
     private Food food;
+    private boolean prelBooked = false;
 
     public Seat(int seatNo, Type type) {
         this.seatNo = seatNo;

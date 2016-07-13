@@ -173,4 +173,9 @@ public class View {
 //        System.out.println("Wow, denna flight ger profiten " + profit + "Skr.");
 //        return;
 //    }
+    
+    public void showProfit(int profit){
+        System.out.println("Wow, denna flight ger profiten " + profit + "Skr.");
+        return;
+    }
 }
