@@ -46,6 +46,10 @@ public class Flight {
         return seat.getSeatNo();
     }
     
+     public void updateTempBookingToRealBooking(Seat seat, Customer customer) {
+         seat.setCustomer(customer);
+    }
+    
     public int createBooking(Type type, Food food, Customer customer){
         Seat seat = getFirstAvailableSeat(type);
         seat.setCustomer(customer);
@@ -54,6 +58,14 @@ public class Flight {
         }
         return seat.getSeatNo();
     }
+    
+    public void setFoodAndSeatByNumbers(int seatNumber, int foodNumber){
+        Seat seat = getSeatByNumber(seatNumber);
+        Food food = menu.getFoodByNumber(foodNumber);
+        seat.setFood(food);
+    }
+    
+    
     
     private Seat getFirstAvailableSeat(Type type){
         for (Seat seat : seats) {
