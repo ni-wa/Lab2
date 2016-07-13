@@ -75,9 +75,16 @@ public class Flight {
         return availSeatsAndPrices;
         }
 
+    //TODO implement reservation of alternative class
     public Seat preliminaryBooking(Enum type) {
-        
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (Seat seat : seats) {
+            if (seat.getType() == type 
+                    && (seat.getPrelBooked() != false)) {
+                seat.setPrelBooked(true);
+                return seat;
+            }
+        }
+        return null;
     }
 
     private ArrayList<Seat> convertPhysicalSeatsToSeats(List<PhysicalSeat> physicalSeats) {
@@ -113,6 +120,27 @@ public class Flight {
             }
         }
         return noOf2ndClassSeatsAvail;
+    }
+
+    public int getNoOf1stClassSeatsBooked(){
+       int noOf1stClassSeatsBooked = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.FIRST_CLASS 
+                    && seat.isBooked()) {
+                noOf1stClassSeatsBooked++;
+            }
+        }
+        return noOf1stClassSeatsBooked;
+    }
+    public int getNoOf2ndClassSeatsBooked(){
+        int noOf2ndClassSeatsBooked = 0;
+        for (Seat seat : seats) {
+            if (seat.getType() == Type.SECOND_CLASS 
+                    && seat.isBooked()) {
+                noOf2ndClassSeatsBooked++;
+            }
+        }
+        return noOf2ndClassSeatsBooked;
     }
     
     public Seat getSeatByNumber(int seatNumber){
