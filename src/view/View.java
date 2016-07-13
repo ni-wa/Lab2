@@ -5,9 +5,7 @@ import Model.Flight;
 import Model.Customer;
 import Model.Food;
 import Model.Menu;
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
