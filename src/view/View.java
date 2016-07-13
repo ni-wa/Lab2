@@ -42,7 +42,9 @@ public class View {
         boolean error = true;
         while (error) {
             for (String string : message) {
-                System.out.println(string);
+                if (string.length() > 0) {
+                    System.out.println(string);
+                }
             }
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
@@ -63,7 +65,7 @@ public class View {
         while (error) {
             System.out.println(message);
             if (scanner.hasNext()) {
-                input = scanner.nextLine();
+                input = scanner.next();
                 if (minLength <= input.trim().length()
                         || maxLength >= input.trim().length()) {
                     error = false;
@@ -82,21 +84,38 @@ public class View {
         return input;
     }
 
-    public int showAvailableSeats(int noFo1stClassSeatsAvail, int price1stClass, int noOf2ndClassSeatsAvail, int price2ndClass) {
+    public int showAvailableSeats(int noOf1stClassSeatsAvail, int price1stClass, int noOf2ndClassSeatsAvail, int price2ndClass) {
         String[] text = new String[4];
-        if (noFo1stClassSeatsAvail == 0 && noOf2ndClassSeatsAvail == 0) {
+        if (noOf1stClassSeatsAvail == 0 && noOf2ndClassSeatsAvail == 0) {
             System.out.println("Sorry!\n");
             System.out.println("Alla biljetter är slut!!!");
             return -1;
         }
-        text[0] = instructions
-                + "Förstaklassbiljetter:\t" + noFo1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n"
-                + "Andraaklassbiljetter:\t" + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
+        String showFirstClassAlternative = "";
+        if (noOf1stClassSeatsAvail > 0) {
+            showFirstClassAlternative = "Förstaklassbiljetter:\t" + noOf1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n";
+        }
+        String showSecondClassAlternative = "";
+        if (noOf2ndClassSeatsAvail > 0) {
+            showSecondClassAlternative = "Andraklassbiljetter:\t"
+                    + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
+        }
+        text[0] = instructions + showFirstClassAlternative + showSecondClassAlternative;
+//                + "Förstaklassbiljetter:\t" + noOf1stClassSeatsAvail + " stycken\tPris: " + price1stClass + " kr\n"
+//                + "Andraaklassbiljetter:\t" + noOf2ndClassSeatsAvail + " stycken\tPris: " + price2ndClass + " kr\n";
 
         text[1] = exitChoice;
+        if (noOf1stClassSeatsAvail > 0) {
+            text[2] = "1 Boka en förstaklassbiljett";
+        } else {
+            text[2] = "";
+        }
+        if (noOf2ndClassSeatsAvail > 0) {
+            text[3] = "2 Boka en andraklassbiljett";
+        } else {
+            text[3] = "";
+        }
 
-        text[2] = "1 Boka en förstaklassbiljett";
-        text[3] = "2 Boka en andraklassbiljett";
         return showOptions(text);
     }
 
@@ -121,7 +140,7 @@ public class View {
         String customerName = getString(getNameText, 2, 100);
         int id = 0;
         boolean notNumeric = true;
-        scanner.next();
+//        scanner.next();
         String customerId = getString(getIdText, 4, 4);
 
 //        while (notNumeric) {
@@ -133,6 +152,7 @@ public class View {
 //            
 //        }
         Customer customer = new Customer(customerName, customerId);
+        System.out.println("C name=" + customerName + "\tcusId=" + customerId);
         return customer;
     }
 
@@ -144,10 +164,9 @@ public class View {
         System.out.println("\n\n");
         return seat;
     }
-    
-    public void showAllFligthData(Flight flight){
+
+    public void showAllFligthData(Flight flight) {
         flight.showAllFlightData();
-        
-        
+
     }
 }
