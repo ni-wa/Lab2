@@ -167,6 +167,10 @@ public class View {
 
     public void showAllFligthData(Flight flight) {
         flight.showAllFlightData();
-
     }
+    
+//    public void showProfit(int profit){
+//        System.out.println("Wow, denna flight ger profiten " + profit + "Skr.");
+//        return;
+//    }
 }
