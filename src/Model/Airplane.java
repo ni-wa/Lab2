@@ -22,8 +22,8 @@ public class Airplane {
             PhysicalSeat ps = new Seat(i + 1, Type.FIRST_CLASS);
             physicalSeats.add(ps);
         }
-        for (int i = noOf1stClassSeats + 1; i < noOf1stClassSeats + noOf2ndClassSeats; i++) {
-            PhysicalSeat ps = new Seat(i + 1, Type.SECOND_CLASS);
+        for (int i = noOf1stClassSeats; i < noOf1stClassSeats + noOf2ndClassSeats; i++) {
+            PhysicalSeat ps = new Seat(i, Type.SECOND_CLASS);
             physicalSeats.add(ps);
         }
         this.status = status;
