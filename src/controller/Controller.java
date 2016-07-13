@@ -78,8 +78,7 @@ public class Controller {
     private void profitCalculation() {
         int choice = -1;
 
-        int kr = profit.profitCalc(flight);
-
-        // fixa liknande som view.showBookingData(flight, seat);
+        int profitSKr = profit.profitCalc(flight);
+        view.showProfit(profitSKr);
     }
 }
