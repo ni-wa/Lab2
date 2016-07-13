@@ -5,7 +5,7 @@ public class Seat extends PhysicalSeat {
     private Customer customer;
     private Food food;
 
-    public Seat(int seatNo, Type type){
+    public Seat(int seatNo, Type type) {
         this.seatNo = seatNo;
         this.type = type;
     }
@@ -34,10 +34,10 @@ public class Seat extends PhysicalSeat {
         this.food = food;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         String free = "FREE\t\t";
-        if (customer != null){
+        if (customer != null) {
             sb.append(customer.toString() + "\n");
             free = "";
         }
