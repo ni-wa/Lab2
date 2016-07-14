@@ -8,7 +8,6 @@ import Model.Menu;
 import Model.Airplane;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -189,11 +188,8 @@ public class View {
         flight.showAllFlightData();
     }
 
-//    public void showProfit(int profit){
-//        System.out.println("Wow, denna flight ger profiten " + profit + "Skr.");
-//        return;
-//    }
-    public void showProfit(int profit) {
+    
+    public void showProfit(int profit){
         System.out.println("Profiten på flighten är uträknad.");
         System.out.println("Profiten är " + profit + " Skr.");
         return;
