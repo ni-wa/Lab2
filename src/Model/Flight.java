@@ -172,6 +172,7 @@ public class Flight {
     
     public void showAllFlightData() {
         this.toString();
+        System.out.println("showAllFlightData"); //debug
         for (Seat seat : seats) {
             System.out.println(seat.toString());
         }

@@ -6,7 +6,6 @@ import Model.Customer;
 import Model.Food;
 import Model.Menu;
 import Model.Airplane;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
