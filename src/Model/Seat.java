@@ -39,10 +39,10 @@ public class Seat extends PhysicalSeat {
         String free = "FREE\t\t";
         if (customer != null) {
             sb.append(customer.toString() + "\n");
-            free = "";
+            free = "BOOKED\t\t";
         }
         if (food != null) {
-            sb.append(food.toString() + "\t");
+            sb.append(food.toString() + "\n");
         }
 
         sb.append(free + "SeatClass:\t" + getType() + "\t\tSeatNo:\t" + seatNo + "\n");
