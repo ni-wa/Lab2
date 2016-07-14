@@ -37,7 +37,7 @@ public class Airplane {
             physicalSeats.add(ps);
         }
         for (int i = noOf1stClassSeats; i < noOf1stClassSeats + noOf2ndClassSeats; i++) {
-            PhysicalSeat ps = new Seat(i, Type.SECOND_CLASS);
+            PhysicalSeat ps = new Seat(i + 1, Type.SECOND_CLASS);
             physicalSeats.add(ps);
         }
         this.airplaneStatus = airplaneStatus;
