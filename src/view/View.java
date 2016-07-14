@@ -5,7 +5,8 @@ import Model.Flight;
 import Model.Customer;
 import Model.Food;
 import Model.Menu;
-import com.sun.xml.internal.ws.util.StringUtils;
+import Model.Airplane;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,13 @@ public class View {
         exitChoice,
         "1 Boka resa\n",
         "2 Profit\n",
-        "3 Visa all flight info"};
+        "3 Visa all flight info",
+        "4 Lägg till flygplan",
+        "5 Tag bort flygplan",
+        "6 Byt flygplan för flighten",
+        "7 Visa alla flygplan"};
+    
+        
 
     String[] availableSeats1stClassText = {
         "1 Boka förstaklassbiljett\n"
@@ -132,6 +139,19 @@ public class View {
         }
         return showOptions(foodAlternatives);
     }
+    
+    public int showRemoveAirplaneAlternatives(List<Airplane> airplaneList){
+        String[] removeAirplaneAlternatives = new String[airplaneList.size() + 2]; // instruction and go back alternative -> 2
+        removeAirplaneAlternatives[0] = "Välj id på plan som skall tas bort";
+        removeAirplaneAlternatives[1] = "0 Avbryt";
+        int i = 2;
+        for (Airplane airplane : airplaneList) {
+            removeAirplaneAlternatives[i] = airplane.toString();
+            i++;
+        }
+        int choice = showOptions(removeAirplaneAlternatives);
+        return choice;
+    }
 
     public Customer showGetCustomerData() {
         String getNameText = "Mata in kundens namn\t";
@@ -168,15 +188,52 @@ public class View {
     public void showAllFligthData(Flight flight) {
         flight.showAllFlightData();
     }
-    
+
 //    public void showProfit(int profit){
 //        System.out.println("Wow, denna flight ger profiten " + profit + "Skr.");
 //        return;
 //    }
-    
-    public void showProfit(int profit){
+    public void showProfit(int profit) {
         System.out.println("Profiten på flighten är uträknad.");
         System.out.println("Profiten är " + profit + " Skr.");
         return;
+    }
+
+    public String getAirplaneName() {
+        String getNameText = "Mata in flygplanest namn (minst Mellan 2 och 40 bokst/siffror";
+        String airplaneName = getString(getNameText, 2, 40);
+        return airplaneName;
+    }
+    
+    public int getNumberOfFirstClassSeats(){
+        String getNumberOf1stClassSeats = "Mata in antalet förstaklassplatser (mellan 2 och 999)";
+        int  numberOf1stClassSeats = getInt(getNumberOf1stClassSeats,
+                Airplane.MIN_NUMBER_OF_FIRST_CLASS_SEATS, Airplane.MAX_NUMBER_OF_FIRST_CLASS_SEATS);
+        return numberOf1stClassSeats;
+    }
+    
+    public int getNumberOfSecondClassSeats(){
+        String getNumberOf2ndClassSeats = "Mata in antalet andraklassplatser(mellan 2 och 999)";
+        int  numberOf2ndClassSeats = getInt(getNumberOf2ndClassSeats,
+                Airplane.MIN_NUMBER_OF_SECOND_CLASS_SEATS, Airplane.MAX_NUMBER_OF_SECOND_CLASS_SEATS);
+        return numberOf2ndClassSeats;
+    }
+        
+    private int getInt(String mess, int min, int max) {
+        boolean notAnInt = true;
+        String input = "";
+        int result = 0;
+        while (notAnInt) {
+//            System.out.println(mess);
+            input = getString(mess, min, max);
+            if (input.matches("\\d+")) {
+                // Integer!!!
+                result = Integer.parseInt(input);
+                if (result <= max && result >= min) {
+                    notAnInt = false;
+                }
+            }
+        }
+        return result;
     }
 }

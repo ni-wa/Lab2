@@ -177,6 +177,8 @@ public class Flight {
         }
         System.out.println(airplane.toString());
     }
+    
+    
 
     public Airplane getAirplane() {
         return airplane;

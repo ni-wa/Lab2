@@ -2,11 +2,14 @@ package controller;
 
 import view.View;
 import Model.Airplane;
+import Model.AirplaneFleet;
 import Model.Customer;
 import Model.Flight;
 import Model.Profit;
 import Model.Seat;
 import Model.Type;
+import Model.AirplaneStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,8 @@ public class Controller {
     private View view;
     private Flight flight;
     private Airplane airPlane;
+//    private List<Airplane> airplaneList = new ArrayList<>();
+    private AirplaneFleet airplaneFleet;
     private Profit profit = new Profit();
 
     private int[] seatsAvaileblaAndPrices;
@@ -23,9 +28,9 @@ public class Controller {
     private int price1stClass;
     private int price2ndClass;
 
-    
-    Controller(Flight flight) {
+    Controller(AirplaneFleet airplaneFleet, Flight flight) {
         this.flight = flight;
+        this.airplaneFleet = airplaneFleet;
     }
 
     public void startInterface() {
@@ -47,7 +52,14 @@ public class Controller {
                 view.showAllFligthData(flight);
             } else if (choice == 2) {
                 profitCalculation();
-            } else {
+            } else if (choice == 4) {
+                addAirplane();
+            } else if (choice == 5) {
+                removeAirplane();
+            } else if (choice == 6) {
+                changeAirplane();
+            } else if (choice == 7) {
+                showAllAirplanes();
             }
         }
     }
@@ -112,4 +124,33 @@ public class Controller {
         int profitSKr = profit.profitCalc(flight);
         view.showProfit(profitSKr);
     }
+
+    private void addAirplane() {
+        String airplaneName = view.getAirplaneName();
+        int numberOf1stClassSeats = view.getNumberOfFirstClassSeats();
+        int numberOf2ndClassSeats = view.getNumberOfSecondClassSeats();
+        Airplane airplane = new Airplane(
+                numberOf1stClassSeats, numberOf2ndClassSeats,
+                airplaneName, AirplaneStatus.AVAILABLE, airplaneFleet);
+        airplaneFleet.addAirplaneToFleet(airplane);
+//        airplaneList.add(airplane);
+    }
+
+    private void removeAirplane() {
+        List<Airplane> airPlaneList = airplaneFleet.getAirPlaneList();
+        int idOfAirplaneToRemove = 
+                view.showRemoveAirplaneAlternatives(airPlaneList);
+        Airplane airplane = airplaneFleet.getAirplaneById(idOfAirplaneToRemove);
+        airplaneFleet.removeAirplane(airplane);
+    }
+
+    private void changeAirplane() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void showAllAirplanes() {
+//        airplaneFleet.
+        System.out.println(airplaneFleet.toString());
+    }
+    
 }

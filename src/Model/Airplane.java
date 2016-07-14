@@ -4,20 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airplane {
+    private static int airplaneIdCounter = 1;
+    
+    public static final int MIN_NUMBER_OF_FIRST_CLASS_SEATS = 2;
+    public static final int MAX_NUMBER_OF_FIRST_CLASS_SEATS = 500;
+
+    public static final int MIN_NUMBER_OF_SECOND_CLASS_SEATS = 2;
+    public static final int MAX_NUMBER_OF_SECOND_CLASS_SEATS = 500;
 
     private List<PhysicalSeat> physicalSeats = new ArrayList<>();
+    private String name;
+    private int airplaneId;
+    private AirplaneStatus airplaneStatus;
 
-    private String status;
-
+    
+    
     public Airplane() {
     }
 
-    public Airplane(List<PhysicalSeat> physicalSeats, String status) {
-        this.physicalSeats = physicalSeats;
-        this.status = status;
-    }
-    
-    public Airplane(int noOf1stClassSeats, int noOf2ndClassSeats, String status) {
+//    public Airplane(List<PhysicalSeat> physicalSeats,
+//            String name, AirplaneStatus airplaneStatus) {
+//        this.name = name;
+//        this.physicalSeats = physicalSeats;
+//        this.airplaneId = airplaneIdCounter;
+//        airplaneId++;
+//    }
+
+    public Airplane(int noOf1stClassSeats, int noOf2ndClassSeats,
+            String name, AirplaneStatus airplaneStatus, AirplaneFleet airplaneFleet) {
         for (int i = 0; i < noOf1stClassSeats; i++) {
             PhysicalSeat ps = new Seat(i + 1, Type.FIRST_CLASS);
             physicalSeats.add(ps);
@@ -26,13 +40,18 @@ public class Airplane {
             PhysicalSeat ps = new Seat(i, Type.SECOND_CLASS);
             physicalSeats.add(ps);
         }
-        this.status = status;
+        this.airplaneStatus = airplaneStatus;
+        this.name = name;
+        this.airplaneId = airplaneIdCounter;
+        airplaneId++;
+        airplaneFleet.addAirplaneToFleet(this);
     }
-    
-    public String toString(){
+
+    public String toString() {
         StringBuffer sb = new StringBuffer();
+        sb.append("Id: " + getAirplaneId() + "\t Name: " + getName() + "\n");
         sb.append("Number of firstclass seats: " + getNumberOf1stClassSeats());
-        sb.append("\tNumber of secondclass seats: " + getNumberOf2ndClassSeats()+ "\n");
+        sb.append("\tNumber of secondclass seats: " + getNumberOf2ndClassSeats() + "\n");
         return sb.toString();
     }
 
@@ -62,5 +81,47 @@ public class Airplane {
             }
         }
         return i;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return the airplaneStatus
+     */
+    public AirplaneStatus getAirplaneStatus() {
+        return airplaneStatus;
+    }
+
+    /**
+     * @param airplaneStatus the airplaneStatus to set
+     */
+    public void setAirplaneStatus(AirplaneStatus airplaneStatus) {
+        this.airplaneStatus = airplaneStatus;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the airplaneId
+     */
+    public int getAirplaneId() {
+        return airplaneId;
+    }
+
+    /**
+     * @param airplaneId the airplaneId to set
+     */
+    private void setAirplaneId(int airplaneId) {
+        this.airplaneId = airplaneId;
     }
 }

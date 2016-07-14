@@ -6,6 +6,8 @@
 package controller;
 
 import Model.Airplane;
+import Model.AirplaneFleet;
+import Model.AirplaneStatus;
 import Model.Customer;
 import Model.Flight;
 import Model.Food;
@@ -21,7 +23,8 @@ import java.util.List;
  * @author User
  */
 public class InitData {
-
+    AirplaneFleet airplaneFleet = new AirplaneFleet();
+    
     public Menu createMenu() {
         Food f1 = new Food("Meat", 25);
         Food f2 = new Food("Veggie", 125);
@@ -34,8 +37,8 @@ public class InitData {
         menu.setFoodList(foodList);
         return menu;
     }
-    
-    public void createBookings(Flight flight){
+
+    public void createBookings(Flight flight) {
         Customer c1 = new Customer("Adam", "001");
         Customer c2 = new Customer("Bertil", "002");
         Customer c3 = new Customer("Ceasar", "003");
@@ -51,39 +54,22 @@ public class InitData {
         flight.createBooking(Type.FIRST_CLASS, f3, c5);
     }
 
-//    public Airplane createAirplane(
-//            int noOf1ClassSeats,
-//            int noOf2ndClassSeats,
-//            String status) {
-//        Airplane ap = new Airplane(noOf1ClassSeats, noOf2ndClassSeats, status)
-//        List<PhysicalSeat> physicalSeats = new ArrayList<>();
-//        for (int i = 0; i < noOf1ClassSeats; i++) {
-//            PhysicalSeat ps = new Seat(i + 1, Type.FIRST_CLASS);
-//            physicalSeats.add(ps);
-//        }
-//        for (int i = noOf1ClassSeats + 1; i < noOf1ClassSeats + noOf2ndClassSeats; i++) {
-//            PhysicalSeat ps = new Seat(i + 1, Type.SECOND_CLASS);
-//            physicalSeats.add(ps);
-//        }
-//        Airplane airplane = new Airplane(physicalSeats, "OK");
-//        return airplane;
-//    }
-    
     public Airplane createAirplane(int noOf1ClassSeats,
-            int noOf2ndClassSeats,
-            String status){
-        Airplane airplane = new Airplane(noOf1ClassSeats, noOf2ndClassSeats, status);
+            int noOf2ndClassSeats, String name, AirplaneStatus airplaneStatus) {
+        Airplane airplane = new Airplane(noOf1ClassSeats, noOf2ndClassSeats, name, airplaneStatus, airplaneFleet);
         return airplane;
     }
-    
-    public Flight createFlight(){
-        Airplane airplane = createAirplane(5, 5, "OK");
+
+    public Flight createFlight() {
+        Airplane airplane = createAirplane(5, 5, "Fokker03", AirplaneStatus.AVAILABLE);
         Menu menu = createMenu();
         Flight flight = new Flight(airplane, menu);
         return flight;
-        
+
+    }
+
+    public AirplaneFleet getAirPlaneFleet() {
+        return airplaneFleet;
     }
 
 }
-
-

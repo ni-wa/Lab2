@@ -6,6 +6,7 @@
 package controller;
 
 import Model.Flight;
+import Model.AirplaneFleet;
 
 /**
  *
@@ -17,7 +18,8 @@ public class Start {
         InitData initData = new InitData();
         Flight flight = initData.createFlight();
         initData.createBookings(flight);
-        Controller controller = new Controller(flight);
+        AirplaneFleet airplaneFleet = initData.getAirPlaneFleet();
+        Controller controller = new Controller(airplaneFleet, flight);
         controller.startInterface();
     }
 }
