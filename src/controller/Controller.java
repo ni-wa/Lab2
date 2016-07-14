@@ -128,8 +128,6 @@ public class Controller {
         Airplane airplane = new Airplane(
                 numberOf1stClassSeats, numberOf2ndClassSeats,
                 airplaneName, AirplaneStatus.AVAILABLE, airplaneFleet);
-        airplaneFleet.addAirplaneToFleet(airplane);
-//        airplaneList.add(airplane);
     }
 
     private void removeAirplane() {
@@ -141,7 +139,16 @@ public class Controller {
     }
 
     private void changeAirplane() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Airplane> availableAirplanes = airplaneFleet.getAirPlaneListByStatus(AirplaneStatus.AVAILABLE);
+        
+        int listNumber = view.changeAirplaneForFlight(flight, availableAirplanes) - 1;
+        if (listNumber < 0){
+            return;
+        }
+        Airplane airplane = availableAirplanes.get(listNumber);
+        flight.getAirplane().setAirplaneStatus(AirplaneStatus.AVAILABLE);
+        airplane.setAirplaneStatus(AirplaneStatus.BUSY);
+        flight.setAirplane(airplane);
     }
 
     private void showAllAirplanes() {

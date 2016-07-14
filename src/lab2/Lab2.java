@@ -16,6 +16,14 @@ public class Lab2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        get();
+    }
+    
+    
+     private static int[] get(){
+        int[] kj = new int[1];
+         System.out.println("kj=" + kj.length);
+       return kj; 
     }
     
 }

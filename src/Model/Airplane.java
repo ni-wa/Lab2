@@ -43,13 +43,15 @@ public class Airplane {
         this.airplaneStatus = airplaneStatus;
         this.name = name;
         this.airplaneId = airplaneIdCounter;
-        airplaneId++;
+        this.setAirplaneStatus(AirplaneStatus.AVAILABLE);
+        airplaneIdCounter++;
         airplaneFleet.addAirplaneToFleet(this);
     }
 
     public String toString() {
         StringBuffer sb = new StringBuffer();
-        sb.append("Id: " + getAirplaneId() + "\t Name: " + getName() + "\n");
+        sb.append("Id: " + getAirplaneId() + "\t Name: " + getName() +
+                "\t" + this.getAirplaneStatus() + "\n");
         sb.append("Number of firstclass seats: " + getNumberOf1stClassSeats());
         sb.append("\tNumber of secondclass seats: " + getNumberOf2ndClassSeats() + "\n");
         return sb.toString();

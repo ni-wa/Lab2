@@ -7,6 +7,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.print.Collation;
 
 /**
  *
@@ -52,11 +53,18 @@ public class AirplaneFleet {
         return sb.toString();
     }
 
-    /**
-     * @return the airPlaneList
-     */
     public List<Airplane> getAirPlaneList() {
         return airPlaneList;
+    }
+    
+    public List<Airplane> getAirPlaneListByStatus(AirplaneStatus airplaneStatus) {
+        List<Airplane> airplaneListStatusSelected = new ArrayList<>();
+        for (Airplane airplane : airPlaneList) {
+            if (airplaneStatus == airplane.getAirplaneStatus()) {
+                airplaneListStatusSelected.add(airplane);
+            }
+        }
+        return airplaneListStatusSelected;
     }
     
 }

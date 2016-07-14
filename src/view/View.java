@@ -14,14 +14,14 @@ public class View {
 
     static protected Scanner scanner;
 
-    String instructions = "Vad vill du göra?\n";
-    String exitChoice = "0 Avsluta\n";
+    String instructions = "\n\nVad vill du göra?\n";
+    String exitChoice = "0 Avsluta";
 
     String[] startScreenText = {
         instructions,
         exitChoice,
-        "1 Boka resa\n",
-        "2 Profit\n",
+        "1 Boka resa",
+        "2 Profit",
         "3 Visa all flight info",
         "4 Lägg till flygplan",
         "5 Tag bort flygplan",
@@ -89,8 +89,10 @@ public class View {
         return input;
     }
 
-    public int showAvailableSeats(int noOf1stClassSeatsAvail, int price1stClass, int noOf2ndClassSeatsAvail, int price2ndClass) {
-        String[] text = new String[4];
+    public int showAvailableSeats(int noOf1stClassSeatsAvail, int price1stClass, 
+            int noOf2ndClassSeatsAvail, int price2ndClass) {
+        int arrayLength = 4; // 2 alternatives + Instructions + exit alternative
+        String[] text = new String[arrayLength];
         if (noOf1stClassSeatsAvail == 0 && noOf2ndClassSeatsAvail == 0) {
             System.out.println("Sorry!\n");
             System.out.println("Alla biljetter är slut!!!");
@@ -158,19 +160,8 @@ public class View {
         String customerName = getString(getNameText, 2, 100);
         int id = 0;
         boolean notNumeric = true;
-//        scanner.next();
-        String customerId = getString(getIdText, 4, 4);
-
-//        while (notNumeric) {
-//            String customerId = getString(getIdText, 10);
-//            if (customerId.matches("\\d+")) {
-//                notNumeric = false;
-//                id = Integer.parseInt(customerId);
-//            }
-//            
-//        }
+        String customerId = getString(getIdText, 2, 10);
         Customer customer = new Customer(customerName, customerId);
-        System.out.println("C name=" + customerName + "\tcusId=" + customerId);
         return customer;
     }
 
@@ -189,8 +180,7 @@ public class View {
 
     
     public void showProfit(int profit){
-        System.out.println("Profiten på flighten är uträknad.");
-        System.out.println("Profiten är " + profit + " Skr.");
+        System.out.println("\nProfiten är " + profit + " Skr.");
         return;
     }
 
@@ -230,5 +220,19 @@ public class View {
             }
         }
         return result;
+    }
+
+    public int changeAirplaneForFlight(Flight flight, List<Airplane> availableAirplanes) {
+        
+        String[] changeAirplaneAlternatives = new String[availableAirplanes.size() + 2];  // instruction and go back alternative -> 2
+        changeAirplaneAlternatives[0]  = "Välj nr(EJ ID) på plan som skall användas";
+        changeAirplaneAlternatives[1] = "0 Avbryt";
+        int i = 2;
+        for (Airplane airplane : availableAirplanes) {
+            changeAirplaneAlternatives[i] = "Nr: " + (i-1) + "\t" + airplane.toString();
+            i++;
+        }
+        int choice = showOptions(changeAirplaneAlternatives);
+        return choice;
     }
 }

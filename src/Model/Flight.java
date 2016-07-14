@@ -19,6 +19,7 @@ public class Flight {
       
     public Flight(Airplane airplane, Menu menu){
         this.airplane = airplane;
+        airplane.setAirplaneStatus(AirplaneStatus.BUSY);
         //When a flight is defined, a list of bookable Seats is defined 
         //with equal number of seats as available Physical seats 
         //in the actual type of Airplane.

@@ -10,9 +10,6 @@ public class Menu {
 
     public Menu() {
         foodList = new ArrayList<>();
-        InitData id = new InitData();
-        foodList = id.createMenu();
-
     }
     
     public Food getFoodByNumber(int foodId){

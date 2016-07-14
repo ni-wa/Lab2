@@ -12,12 +12,10 @@ public class Profit {
                 flight.getNoOf1stClassSeatsBooked() * flight.getFirstClassPrice()
                 + flight.getNoOf2ndClassSeatsBooked() * flight.getSecondClassPrice();
 
-        //System.out.println("DEBUG: profit resan : " + seatMoney);
                        
         int mealMoney = 0;
         for (Seat seat : flight.getSeats()) {
             if (seat.getFood() != null) {
-                //System.out.println("DEBUG: profit mat : " + seat.getFood());
                 int thisMeal = seat.getFood().getPrice();
                 mealMoney = +thisMeal;
             }
