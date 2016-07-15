@@ -82,26 +82,23 @@ public class Controller {
             choice = view.showAvailableSeats(noOf1stClassSeatsAvail,
                     price1stClass, noOf2ndClassSeatsAvail, price2ndClass);
 
+            if ((choice == 1 && flight.getNoOf1stClassSeatsAvail() <= 0)
+                    || (choice == 2 && flight.getNoOf2ndClassSeatsAvail() <= 0)) {
+                choice = -1;
+            }
+
             switch (choice) {
                 case 0:
                     choice = 0;
                     break;
                 case 1:
-                    if (flight.getNoOf1stClassSeatsAvail() > 0) {
-                        seatNo = flight.createTempBooking(Type.FIRST_CLASS);
-                        System.out.println("Temporär bokning gjord!\n");
-                    } else {
-                        choice = -1;
-                    }
+                    seatNo = flight.createTempBooking(Type.FIRST_CLASS);
+                    System.out.println("Temporär bokning gjord!\n");
                     break;
 
                 case 2:
-                    if (flight.getNoOf2ndClassSeatsAvail() > 0) {
-                        seatNo = flight.createTempBooking(Type.SECOND_CLASS);
-                        System.out.println("Temporär bokning gjord!\n");
-                    }else {
-                        choice = -1;
-                    }
+                    seatNo = flight.createTempBooking(Type.SECOND_CLASS);
+                    System.out.println("Temporär bokning gjord!\n");
                     break;
             }
         }
