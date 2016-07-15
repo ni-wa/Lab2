@@ -87,13 +87,21 @@ public class Controller {
                     choice = 0;
                     break;
                 case 1:
-                    seatNo = flight.createTempBooking(Type.FIRST_CLASS);
-                    System.out.println("Temporär bokning gjord!\n");
+                    if (flight.getNoOf1stClassSeatsAvail() > 0) {
+                        seatNo = flight.createTempBooking(Type.FIRST_CLASS);
+                        System.out.println("Temporär bokning gjord!\n");
+                    } else {
+                        choice = -1;
+                    }
                     break;
 
                 case 2:
-                    seatNo = flight.createTempBooking(Type.SECOND_CLASS);
-                    System.out.println("Temporär bokning gjord!\n");
+                    if (flight.getNoOf2ndClassSeatsAvail() > 0) {
+                        seatNo = flight.createTempBooking(Type.SECOND_CLASS);
+                        System.out.println("Temporär bokning gjord!\n");
+                    }else {
+                        choice = -1;
+                    }
                     break;
             }
         }
@@ -132,17 +140,17 @@ public class Controller {
 
     private void removeAirplane() {
         List<Airplane> airPlaneList = airplaneFleet.getAirPlaneList();
-        int idOfAirplaneToRemove = 
-                view.showRemoveAirplaneAlternatives(airPlaneList);
+        int idOfAirplaneToRemove
+                = view.showRemoveAirplaneAlternatives(airPlaneList);
         Airplane airplane = airplaneFleet.getAirplaneById(idOfAirplaneToRemove);
         airplaneFleet.removeAirplane(airplane);
     }
 
     private void changeAirplane() {
         List<Airplane> availableAirplanes = airplaneFleet.getAirPlaneListByStatus(AirplaneStatus.AVAILABLE);
-        
+
         int listNumber = view.changeAirplaneForFlight(flight, availableAirplanes) - 1;
-        if (listNumber < 0){
+        if (listNumber < 0) {
             return;
         }
         Airplane airplane = availableAirplanes.get(listNumber);
@@ -155,5 +163,5 @@ public class Controller {
 //        airplaneFleet.
         System.out.println(airplaneFleet.toString());
     }
-    
+
 }
